@@ -1,0 +1,49 @@
+#include <stdio.h>
+int c = 0;
+int binary (int *p, int lb, int ub, int n1)
+{
+  if (lb > ub)
+  {  return 1;
+  }
+  else
+    {
+      int m = (lb + ub) / 2;
+      if (p[m] == n1)
+	{
+	  c++;
+	  printf ("no. is in index : %d\n", m);
+	  printf ("no. of comparision : %d", c);
+	}
+      else if (p[m] < n1)
+	{
+	  c++;
+	  return binary (p, (m + 1), ub, n1);
+	}
+      else
+	{
+	  c++;
+	  return binary (p, lb, (m - 1), n1);
+
+	}
+    }
+
+}
+
+int main ()
+{
+  int n, n1;
+  scanf ("%d", &n);
+  int a[n];
+  for (int i = 0; i < n; i++)
+    {
+      scanf ("%d", &a[i]);
+    }
+  printf ("enter the key to be search : ");
+  scanf ("%d", &n1);
+  c = binary (a, 0, n, n1);
+  if (c == 1)
+   printf ("-1");
+  return 0;
+}
+
+
